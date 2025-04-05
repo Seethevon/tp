@@ -58,8 +58,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_EDITED_FIELD_HAS_SAME_VALUE = "Some of the fields you're trying to" +
-            " edit already have the same value as before. This is not allowed. \n";
+    public static final String MESSAGE_EDITED_FIELD_HAS_SAME_VALUE = "Some of the fields you're trying to"
+            + " edit already have the same value as before. This is not allowed. \n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -194,7 +194,7 @@ public class EditCommand extends Command {
         return unchangedValues;
     }
 
-    public String getMessageOfUnchangedValues (Person person, Person editedPerson,
+    public String getMessageOfUnchangedValues(Person person, Person editedPerson,
                                                EditPersonDescriptor editPersonDescriptor) {
         List<String> unchangedValues = getUnchangedValues(person, editedPerson, editPersonDescriptor);
         String message = "";
