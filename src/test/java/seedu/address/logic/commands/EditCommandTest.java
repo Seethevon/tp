@@ -158,8 +158,8 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(lastPerson).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = EditCommand.MESSAGE_EDITED_FIELD_HAS_SAME_VALUE +
-                editCommand.getMessageOfUnchangedValues(lastPerson, lastPerson, descriptor);
+        String expectedMessage = EditCommand.MESSAGE_EDITED_FIELD_HAS_SAME_VALUE
+                + editCommand.getMessageOfUnchangedValues(lastPerson, lastPerson, descriptor);
 
         assertCommandFailure(editCommand, model, expectedMessage);
     }
