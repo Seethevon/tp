@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -57,6 +58,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_EDITED_FIELD_HAS_SAME_VALUE = "Some of the fields you're trying to" +
+            " edit already have the same value as before. This is not allowed. \n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -84,6 +87,11 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        String messageUnchangedValues = getMessageOfUnchangedValues(personToEdit, editedPerson, editPersonDescriptor);
+        if (!messageUnchangedValues.isEmpty()) {
+            throw new CommandException(MESSAGE_EDITED_FIELD_HAS_SAME_VALUE + messageUnchangedValues);
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -117,6 +125,85 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedRole,
                 updatedGrade, updatedClass, updatedFamilyMember, updatedFamilyMemberPhone, updatedFavourite);
+    }
+
+    public List<String> getUnchangedValues(Person person, Person editedPerson,
+                                           EditPersonDescriptor editPersonDescriptor) {
+        List<String> unchangedValues = new ArrayList<>();
+
+        if (!editPersonDescriptor.isNameNull()) {
+            if (Objects.equals(person.getName(), editedPerson.getName())) {
+                unchangedValues.add("name");
+            }
+        }
+
+        if (!editPersonDescriptor.isPhoneNull()) {
+            if (Objects.equals(person.getPhone(), editedPerson.getPhone())) {
+                unchangedValues.add("phone");
+            }
+        }
+
+        if (!editPersonDescriptor.isEmailNull()) {
+            if (Objects.equals(person.getEmail(), editedPerson.getEmail())) {
+                unchangedValues.add("email");
+            }
+        }
+
+        if (!editPersonDescriptor.isAddressNull()) {
+            if (Objects.equals(person.getAddress(), editedPerson.getAddress())) {
+                unchangedValues.add("address");
+            }
+        }
+
+        if (!editPersonDescriptor.isTagsNull()) {
+            if (Objects.equals(person.getTags(), editedPerson.getTags())) {
+                unchangedValues.add("tags");
+            }
+        }
+
+        if (!editPersonDescriptor.isRoleNull()) {
+            if (Objects.equals(person.getRole(), editedPerson.getRole())) {
+                unchangedValues.add("role");
+            }
+        }
+
+        if (!editPersonDescriptor.isGradeNull()) {
+            if (Objects.equals(person.getGrade(), editedPerson.getGrade())) {
+                unchangedValues.add("grade");
+            }
+        }
+
+        if (!editPersonDescriptor.isStudentClassNull()) {
+            if (Objects.equals(person.getStudentClass(), editedPerson.getStudentClass())) {
+                unchangedValues.add("student class");
+            }
+        }
+
+        if (!editPersonDescriptor.isRelativeNameNull()) {
+            if (Objects.equals(person.getRelativeName(), editedPerson.getRelativeName())) {
+                unchangedValues.add("relative name");
+            }
+        }
+
+        if (!editPersonDescriptor.isRelativePhoneNull()) {
+            if (Objects.equals(person.getRelativePhone(), editedPerson.getRelativePhone())) {
+                unchangedValues.add("relative phone");
+            }
+        }
+
+        return unchangedValues;
+    }
+
+    public String getMessageOfUnchangedValues (Person person, Person editedPerson,
+                                               EditPersonDescriptor editPersonDescriptor) {
+        List<String> unchangedValues = getUnchangedValues(person, editedPerson, editPersonDescriptor);
+        String message = "";
+
+        if (!unchangedValues.isEmpty()) {
+            message = "These are the fields: "
+                    + String.join(", ", unchangedValues) + ".";
+        }
+        return message;
     }
 
     @Override
@@ -196,12 +283,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
+        public boolean isNameNull() {
+            return this.name == null;
+        }
+
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
+        }
+
+        public boolean isPhoneNull() {
+            return this.phone == null;
         }
 
         public void setEmail(Email email) {
@@ -212,12 +307,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public boolean isEmailNull() {
+            return this.email == null;
+        }
+
         public void setAddress(Address address) {
             this.address = address;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public boolean isAddressNull() {
+            return this.address == null;
         }
 
         /**
@@ -237,12 +340,20 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public boolean isTagsNull() {
+            return this.tags == null;
+        }
+
         public void setRole(Role role) {
             this.role = role;
         }
 
         public Optional<Role> getRole() {
             return Optional.ofNullable(role);
+        }
+
+        public boolean isRoleNull() {
+            return this.role == null;
         }
 
         public void setGrade(Grade grade) {
@@ -253,12 +364,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(grade);
         }
 
+        public boolean isGradeNull() {
+            return this.grade == null;
+        }
+
         public void setStudentClass(Class studentClass) {
             this.studentClass = studentClass;
         }
 
         public Optional<Class> getStudentClass() {
             return Optional.ofNullable(studentClass);
+        }
+
+        public boolean isStudentClassNull() {
+            return this.studentClass == null;
         }
 
         public void setRelativeName(Name relativeName) {
@@ -269,12 +388,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(relativeName);
         }
 
+        public boolean isRelativeNameNull() {
+            return this.relativeName == null;
+        }
+
         public void setRelativePhone(Phone relativePhone) {
             this.relativePhone = relativePhone;
         }
 
         public Optional<Phone> getRelativePhone() {
             return Optional.ofNullable(relativePhone);
+        }
+
+        public boolean isRelativePhoneNull() {
+            return this.relativePhone == null;
         }
 
         public void setFavourite(Favourite favourite) {
