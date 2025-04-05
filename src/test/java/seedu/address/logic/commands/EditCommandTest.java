@@ -151,6 +151,20 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_editWhereAllFieldsAreUnchanged() {
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(lastPerson).build();
+        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+
+        String expectedMessage = EditCommand.MESSAGE_EDITED_FIELD_HAS_SAME_VALUE +
+                editCommand.getMessageOfUnchangedValues(lastPerson, lastPerson, descriptor);
+
+        assertCommandFailure(editCommand, model, expectedMessage);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
