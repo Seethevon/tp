@@ -60,7 +60,7 @@ Getting started with ClassHive is easy! Just follow these steps:
 If you've never used a CLI before don’t worry! This short tutorial will walk you through the basics, and you’ll be managing your contacts like a pro in no time!
 
 ### Getting Familiar with the Interface
-<img src="images/annotatedUI.png" width="400px" /> <br>
+<img src="images/annotatedv1.6Ui.png" width="400px" /> <br>
 
 1️⃣ #r#Command box## <br>
   * This is where users type their commands to interact with ClassHive. <br>
@@ -83,7 +83,7 @@ favourite 1
 
 2️⃣ Press **Enter**. <br>
 3️⃣ You should see this. <br>
-   input image after fixing favourite bug.
+   <img src="images/favouriteTutorial.png" width="400px" /> 
 <br>
 #### Command 2: ➕ Add
 
@@ -95,7 +95,7 @@ add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Serangoon Avenue 2 p/12345
 2️⃣ Press **Enter**. <br>
 3️⃣ Scroll down the **Contact List Panel**. <br>
 4️⃣ You should see this. <br>
-   <img src="images/addTutorial.png" width="400px" /> 
+   <img src="images/addTutorial1.png" width="400px" /> 
 <br>
 
 #### Command 3: 🗑️ Delete
@@ -108,7 +108,7 @@ delete n/Betsy Crowe p/12345678
 2️⃣ Press **Enter**. <br>
 3️⃣ Scroll down the **Contact List Panel**. <br>
 4️⃣ You should see this. <br>
-   <img src="images/deleteTutorial.png" width="400px" /> 
+   <img src="images/deleteTutorial1.png" width="400px" /> 
 <br>
 
 #### 🎊 Congratulations!
@@ -150,7 +150,7 @@ It will be useful to know some information about the command format before getti
 Help is always near when using ClassHive! At any point in time, if you need instructions on how to use the app, 
 type `help`.
 
-![help message](images/helpMessage.png)
+![help message](images/helpBox.png)
 
 **Format:** `help`
 
