@@ -50,7 +50,7 @@ Getting started with ClassHive is easy! Just follow these steps:
 5. Start using ClassHive!
       * After a few seconds, the ClassHive window should appear, ready to help you manage your contacts easily.
       * It should look like this! It will contain some sample data. <br>
-        <img src="images/v1.3Ui.png" width="400px" /> <br>
+        <img src="images/v1.6Ui.png" width="400px" /> <br>
 
 6. Refer to the [Features](#features) below for details of each command.
 7. 💡 If you're unfamiliar with using commands in a command-line interface (CLI), check out the [CLI Tutorial](#cli-tutorial) to get comfortable before diving in!
@@ -60,7 +60,7 @@ Getting started with ClassHive is easy! Just follow these steps:
 If you've never used a CLI before don’t worry! This short tutorial will walk you through the basics, and you’ll be managing your contacts like a pro in no time!
 
 ### Getting Familiar with the Interface
-<img src="images/annotatedUI.png" width="400px" /> <br>
+<img src="images/annotatedv1.6Ui.png" width="400px" /> <br>
 
 1️⃣ #r#Command box## <br>
   * This is where users type their commands to interact with ClassHive. <br>
@@ -83,8 +83,9 @@ favourite 1
 
 2️⃣ Press **Enter**. <br>
 3️⃣ You should see this. <br>
-   input image after fixing favourite bug.
+   <img src="images/favouriteTutorial.png" width="400px" /> 
 <br>
+
 #### Command 2: ➕ Add
 
 1️⃣ Type the following command into the **Command Box**:
@@ -95,7 +96,7 @@ add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Serangoon Avenue 2 p/12345
 2️⃣ Press **Enter**. <br>
 3️⃣ Scroll down the **Contact List Panel**. <br>
 4️⃣ You should see this. <br>
-   <img src="images/addTutorial.png" width="400px" /> 
+   <img src="images/addTutorial1.png" width="400px" /> 
 <br>
 
 #### Command 3: 🗑️ Delete
@@ -108,7 +109,7 @@ delete n/Betsy Crowe p/12345678
 2️⃣ Press **Enter**. <br>
 3️⃣ Scroll down the **Contact List Panel**. <br>
 4️⃣ You should see this. <br>
-   <img src="images/deleteTutorial.png" width="400px" /> 
+   <img src="images/deleteTutorial1.png" width="400px" /> 
 <br>
 
 #### 🎊 Congratulations!
